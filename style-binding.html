@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Example: Attr Binding</title>
+    <title>Example: Style Binding</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -14,17 +14,14 @@
     
 </head>
 <body>
-    <a data-bind="attr: {href: url, title: details}">
-        About Us
-    </a>
+    <div data-bind="style: {color: amount() > 10 ? 'red' : 'black'}">Some Amount</div>
 
     <script>
         var viewModel = {
-           url: ko.observable('about.html'),
-           details: ko.observable('Read More About Us')
+           amount: ko.observable(9)
         }
 
-        
+        viewModel.amount(11);
 
         ko.applyBindings(viewModel);
     </script>
