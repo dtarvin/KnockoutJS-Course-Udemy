@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Example: Value Binding</title>
+    <title>Example: Click Binding</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -14,17 +14,27 @@
     
 </head>
 <body>
-    <p>Login: <input data-bind="value: userName, valueUpdate: 'afterkeydown'" type="text"></p>
-    <p>Password: <input data-bind="value: userPassword" type="password"></p>
-    <p>Logging in as: <span data-bind="text: userName"></span></p>
+
+    <ul data-bind="foreach: users">
+        <li>
+            <span data-bind="text: $data"></span>
+            <button data-bind="click: $parent.removeUser">
+                Remove
+            </button>
+        </li>
+    </ul>
 
     <script>
-        var viewModel = {
-            userName: ko.observable('johndoe'),
-            userPassword: ko.observable()
+        function viewModel() {
+            var self = this;
+            self.users = ko.observableArray(['John', 'Lance', 'Dan']);
+
+            self.removeUser = function(user) {
+                self.users.remove(user);
+            }
         }
 
-        ko.applyBindings(viewModel);
+        ko.applyBindings(new viewModel());
     </script>
 </body>
 </html>

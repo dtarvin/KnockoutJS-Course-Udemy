@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Example: Value Binding</title>
+    <title>Example: With Binding</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -14,14 +14,21 @@
     
 </head>
 <body>
-    <p>Login: <input data-bind="value: userName, valueUpdate: 'afterkeydown'" type="text"></p>
-    <p>Password: <input data-bind="value: userPassword" type="password"></p>
-    <p>Logging in as: <span data-bind="text: userName"></span></p>
+    <h1 data-bind="text: city"></h1>
+    <p data-bind="with: coords">
+        Latitude: <span data-bind="text: lat"></span>
+        Longitude: <span data-bind="text: lon"></span>
+    </p>
+
+    
 
     <script>
         var viewModel = {
-            userName: ko.observable('johndoe'),
-            userPassword: ko.observable()
+            city: "Boston",
+            coords: {
+                lat: 42.3601,
+                lon: 71.0589
+            }
         }
 
         ko.applyBindings(viewModel);

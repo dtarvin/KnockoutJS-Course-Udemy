@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Example: Value Binding</title>
+    <title>Example: Attr Binding</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -14,15 +14,17 @@
     
 </head>
 <body>
-    <p>Login: <input data-bind="value: userName, valueUpdate: 'afterkeydown'" type="text"></p>
-    <p>Password: <input data-bind="value: userPassword" type="password"></p>
-    <p>Logging in as: <span data-bind="text: userName"></span></p>
+    <a data-bind="attr: {href: url, title: details}">
+        About Us
+    </a>
 
     <script>
         var viewModel = {
-            userName: ko.observable('johndoe'),
-            userPassword: ko.observable()
+           url: ko.observable('about.html'),
+           details: ko.observable('Read More About Us')
         }
+
+        
 
         ko.applyBindings(viewModel);
     </script>
