@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Example: Component Binding</title>
+    <title>Example: Custom Elements</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="underscore-ko.js"></script>
 </head>
 
 <body>
-    <div data-bind="component: 'newsletter-widget'"></div>
+    <newsletter-widget></newsletter-widget>
+    
     <script>
         ko.components.register('newsletter-widget', {
-            viewModel: function(params) {
+            viewModel: function() {
                 this.email = ko.observable();
                 this.showMessage = ko.observable(false);
 
@@ -25,13 +28,14 @@
                     this.showMessage(true);
                 }
             },
-            template: 
-            '<h3>Subscribe To Our Newsletter<h3>\
-            <form data-bind="submit: submitForm">\
+            template:
+            '<h3>Subscribe To Our Newsletter</h3>\
+            <form data-bind="submit:submitForm">\
                 <input data-bind="value: email">\
                 <button type="submit">Submit</button>\
             </form>\
-            <p data-bind="visible: showMessage">Thank you for subscribing: <br><strong><span data-bind="text: email"></span></strong></p>'
+            <p data-bind="visible: showMessage">Thanks For Subscribing: <br><strong><span data-bind="text: email"></span></strong>\
+            '
         });
         ko.applyBindings();
     </script>
