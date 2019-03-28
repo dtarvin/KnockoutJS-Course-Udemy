@@ -4,24 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Example: Checked Binding</title>
+    <title>Example: Enable and Disable Binding</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    
 </head>
-
 <body>
-    <p>My Checkbox <input type="checkbox" data-bind="checked: checkIt"></p>
-    <button data-bind="click: checkIt">Check the Box</button>
+    <p>
+        <input type="checkbox" data-bind="checked:isCompany">
+        Register Under a Company
+    </p>
+    <p>
+        Your name:
+        <input type="text" data-bind="value: name, disable:isCompany">
+    </p>
+    <p>
+        Company name:
+        <input type="text" data-bind="value: companyName, enable:isCompany">
+    </p>
+
     <script>
         var viewModel = {
-            checkIt: ko.observable(true)
+            isCompany: ko.observable(false),
+            companyName: ""
         }
-            viewModel.checkIt(false);
+
         ko.applyBindings(viewModel);
     </script>
 </body>
